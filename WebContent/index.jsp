@@ -9,7 +9,7 @@
 <body>
 <form method="get" action="index2.jsp">
 	<input type="text" name="name" >
-	<input type="submit" name="submitButton">
+	<input type="submit" name="submitButton" value="Submit Price">
 	<%if(request.getParameter("submitButton")!=null){
 	Recipe r = new Recipe();
 	r.readFromClient(request.getParameter("name"));
