@@ -11,30 +11,24 @@
 <%
 Shop cafeNero;
 if(session.getAttribute("Shop") == null) {
-	cafeNero = new Shop();
+	cafeNero = new Shop(session.getId());
 	session.setAttribute("Shop", cafeNero);
-	cafeNero.id = session.getId();
 }else{
 	cafeNero = (Shop) session.getAttribute("Shop");
-	double oldBalance = cafeNero.getBalance();
-	cafeNero.setPrice(Double.parseDouble(request.getParameter("price")));
+	int day = cafeNero.day;
+	cafeNero.prices[day]= Double.parseDouble(request.getParameter("price"));
 	cafeNero.balanceUpdater();
-	double currentBalance = cafeNero.getBalance();
-	pageContext.setAttribute("newBalance", currentBalance);
-	double sales = (currentBalance - oldBalance)/ Double.parseDouble(request.getParameter("price"));
-	pageContext.setAttribute("sales", sales);
 }
 %>
-
 
 <p> Welcome to Coffee Shop Simulation. </p>
 
 This is your Coffee Shop.
 You can determine the price per cup of coffee.
 
-
-<p>Current Balance: <jsp:text>${newBalance}</jsp:text></p>
-<p> Today is Day 1</p>
+<p>Your current balance: <% out.println(cafeNero.balance); %></p>
+<p>Today is day <% out.println(cafeNero.day); %></p>
+<p>Today's sale: <% out.println(cafeNero.dailySales[cafeNero.day]); %> </p>
 <form action="index.jsp" method="get" id="priceform">
   Price: 
   <input type="text" name="price">
@@ -42,64 +36,5 @@ You can determine the price per cup of coffee.
 
 </form>
 
-Your sales:
-<table width="200" border="1">
-  <tr>
-    <td>Day 1</td>
-    <td><jsp:text>${sales}</jsp:text></td>
-  </tr>
-  <tr>
-    <td>Day 2</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 3</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 4</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 5</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 6</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 7</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 8</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 9</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 10</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 11</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 12</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 13</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>Day 14</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
 </body>
 </html>

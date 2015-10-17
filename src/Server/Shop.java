@@ -2,31 +2,23 @@ package Server;
 
 public class Shop {
 	
-	private Double Balance;
-	private Double Price;
+	public Double balance;
+	public Double [] prices;
+	public int [] dailySales;
 	public String id;
+	public int day;
 	
-	public Shop(){
-		Balance = 100.0;
-	}
-	
-	public Double getBalance() {
-		return Balance;
-	}
-
-	public void setBalance(Double balance) {
-		Balance = balance;
-	}
-
-	public Double getPrice() {
-		return Price;
-	}
-
-	public void setPrice(Double price) {
-		Price = price;
+	public Shop(String id){
+		balance = 100.0;
+		day = 0;
+		dailySales = new int[14];
+		prices = new Double[14];
+		this.id = id;
 	}
 	
-	public void balanceUpdater(){
-		Balance += 3*Price;
+	public void balanceUpdater() {
+		balance = balance + prices[day] * 3;
+		dailySales[day] = 3;
+		day++;
 	}
 }
