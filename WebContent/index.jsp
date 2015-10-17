@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="Server.Recipe" %>
+    pageEncoding="ISO-8859-1" import="Server.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,14 +15,29 @@
 This is your Coffee Shop.
 You can determine the price per cup of coffee.
 
+
+
 <p> Today is Day 1</p>
-<form action="index2.jsp" method="get" id="priceform">
+<form action="index.jsp" method="get" id="priceform">
   Price: 
   <input type="text" name="price">
     <button type="submit" form="priceform" value="Submit">Submit</button>
 
 
 </form>
+
+<%
+
+Shop cafeNero;
+if(session.getAttribute("Shop") == null) {
+	cafeNero = new Shop();
+	session.setAttribute("Shop", cafeNero);
+}else{
+	cafeNero = (Shop) session.getAttribute("Shop");
+	cafeNero.setPrice(Double.parseDouble(request.getParameter("price")));
+}
+
+%>
 
 Your sales:
 <table width="200" border="1">
