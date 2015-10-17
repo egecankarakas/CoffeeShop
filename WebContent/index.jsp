@@ -8,6 +8,23 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<%
+Shop cafeNero;
+if(session.getAttribute("Shop") == null) {
+	cafeNero = new Shop();
+	session.setAttribute("Shop", cafeNero);
+	cafeNero.id = session.getId();
+}else{
+	cafeNero = (Shop) session.getAttribute("Shop");
+	double oldBalance = cafeNero.getBalance();
+	cafeNero.setPrice(Double.parseDouble(request.getParameter("price")));
+	cafeNero.balanceUpdater();
+	double currentBalance = cafeNero.getBalance();
+	pageContext.setAttribute("newBalance", currentBalance);
+	double sales = (currentBalance - oldBalance)/ Double.parseDouble(request.getParameter("price"));
+	pageContext.setAttribute("sales", sales);
+}
+%>
 
 
 <p> Welcome to Coffee Shop Simulation. </p>
@@ -16,38 +33,20 @@ This is your Coffee Shop.
 You can determine the price per cup of coffee.
 
 
-
+<p>Current Balance: <jsp:text>${newBalance}</jsp:text></p>
 <p> Today is Day 1</p>
 <form action="index.jsp" method="get" id="priceform">
   Price: 
   <input type="text" name="price">
     <button type="submit" form="priceform" value="Submit">Submit</button>
 
-
 </form>
-
-<%
-
-Shop cafeNero;
-if(session.getAttribute("Shop") == null) {
-	cafeNero = new Shop();
-	session.setAttribute("Shop", cafeNero);
-}else{
-	cafeNero = (Shop) session.getAttribute("Shop");
-	cafeNero.setPrice(Double.parseDouble(request.getParameter("price")));
-	cafeNero.balanceUpdater();
-	double currentBalance = cafeNero.getBalance();
-	pageContext.setAttribute("newValue", currentBalance);
-}
-
-
-%>
 
 Your sales:
 <table width="200" border="1">
   <tr>
     <td>Day 1</td>
-    <td><jsp:text>${newValue}</jsp:text></td>
+    <td><jsp:text>${sales}</jsp:text></td>
   </tr>
   <tr>
     <td>Day 2</td>
