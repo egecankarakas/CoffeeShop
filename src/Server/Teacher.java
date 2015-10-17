@@ -9,12 +9,17 @@ public class Teacher {
       JButton okButton = new JButton("Run");
       ButtonHandler listener = new ButtonHandler();
       okButton.addActionListener(listener);
-      JPanel content = new JPanel();
+      
       JLabel title = new JLabel();
       title.setText("Coffee Shop Simulation Management Consolex");
+      
+      JList userList = new JList();
+      
+      JPanel content = new JPanel();
       content.setLayout(new BorderLayout());
       content.add(okButton, BorderLayout.SOUTH);
       content.add(title, BorderLayout.NORTH);
+      content.add(userList, BorderLayout.CENTER);
 
       JFrame window = new JFrame("Coffee Shop Simulation Management Console");
       window.setContentPane(content);
