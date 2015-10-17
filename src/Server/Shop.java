@@ -24,4 +24,8 @@ public class Shop {
 	public void setPrice(Double price) {
 		Price = price;
 	}
+	
+	public void balanceUpdater(){
+		Balance += 3*Price;
+	}
 }

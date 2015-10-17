@@ -35,7 +35,11 @@ if(session.getAttribute("Shop") == null) {
 }else{
 	cafeNero = (Shop) session.getAttribute("Shop");
 	cafeNero.setPrice(Double.parseDouble(request.getParameter("price")));
+	cafeNero.balanceUpdater();
+	double currentBalance = cafeNero.getBalance();
+	pageContext.setAttribute("newValue", currentBalance);
 }
+
 
 %>
 
@@ -43,7 +47,7 @@ Your sales:
 <table width="200" border="1">
   <tr>
     <td>Day 1</td>
-    <td>&nbsp;</td>
+    <td><jsp:text>${newValue}</jsp:text></td>
   </tr>
   <tr>
     <td>Day 2</td>
