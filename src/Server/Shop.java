@@ -4,6 +4,7 @@ public class Shop {
 	
 	private Double Balance;
 	private Double Price;
+	public String id;
 	
 	public Shop(){
 		Balance = 100.0;
