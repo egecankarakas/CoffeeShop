@@ -29,13 +29,10 @@ if(session.getAttribute("Shop") == null) {
 	pageContext.setAttribute("balance", cafeNero.balance);
 }
 %>
-	
-	
+
 	<p>Your current balance: <jsp:text>${balance}</jsp:text></p>
 	<p>Today is day <jsp:text>${day}</jsp:text></p>
 	<p>Today's sale: <jsp:text>${dailySales}</jsp:text> </p>
-
-
 
 <form action="index.jsp" method="get" id="priceform">
   Price: 

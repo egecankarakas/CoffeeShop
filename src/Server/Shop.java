@@ -17,7 +17,7 @@ public class Shop {
 		prices = new Double[14];
 		this.id = id;
 		this.recipes = new Recipe[14];
-		this.inventory = new Inventory(0,0.0,0.0,0.0,balance);
+		this.inventory = new Inventory(0,0.0,0.0,0.0);
 	}
 	
 	public void balanceUpdater() {
@@ -25,5 +25,4 @@ public class Shop {
 		dailySales[day] = 3;
 		day++;
 	}
-	
 }
