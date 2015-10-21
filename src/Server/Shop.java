@@ -9,6 +9,7 @@ public class Shop {
 	public int day;
 	public Inventory inventory;
 	public Recipe[] recipes;
+	public inventoryPriceTable priceTable = new inventoryPriceTable();
 	
 	public Shop(String id){
 		balance = 100.0;
@@ -17,7 +18,7 @@ public class Shop {
 		prices = new Double[14];
 		this.id = id;
 		this.recipes = new Recipe[14];
-		this.inventory = new Inventory(0,0.0,0.0,0.0);
+		this.inventory = new Inventory(5,10.0,15.0,20.0);
 	}
 	
 	public void balanceUpdater() {

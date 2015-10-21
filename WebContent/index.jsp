@@ -13,6 +13,17 @@ Shop cafeNero;
 if(session.getAttribute("Shop") == null) {
 	cafeNero = new Shop(session.getId());
 	session.setAttribute("Shop", cafeNero);
+	pageContext.setAttribute("day", cafeNero.day);
+	pageContext.setAttribute("balance", cafeNero.balance);
+	pageContext.setAttribute("coffeeInventory", cafeNero.inventory.coffee); 
+	pageContext.setAttribute("cupsInventory", cafeNero.inventory.cups); 
+	pageContext.setAttribute("milkInventory", cafeNero.inventory.milk); 
+	pageContext.setAttribute("sugarInventory", cafeNero.inventory.sugar);
+	pageContext.setAttribute("cupPrice", cafeNero.priceTable.cupPrice);
+	pageContext.setAttribute("coffeePrice", cafeNero.priceTable.coffeePrice);
+	pageContext.setAttribute("sugarPrice", cafeNero.priceTable.sugarPrice);
+	pageContext.setAttribute("milkPrice", cafeNero.priceTable.milkPrice);
+
 }else{
 	cafeNero = (Shop) session.getAttribute("Shop");
 	int day = cafeNero.day;
@@ -21,6 +32,15 @@ if(session.getAttribute("Shop") == null) {
 	pageContext.setAttribute("dailySales", cafeNero.dailySales[cafeNero.day-1]);
 	pageContext.setAttribute("day", cafeNero.day);
 	pageContext.setAttribute("balance", cafeNero.balance);
+	pageContext.setAttribute("coffeeInventory", cafeNero.inventory.coffee); 
+	pageContext.setAttribute("cupsInventory", cafeNero.inventory.cups); 
+	pageContext.setAttribute("milkInventory", cafeNero.inventory.milk); 
+	pageContext.setAttribute("sugarInventory", cafeNero.inventory.sugar);
+	pageContext.setAttribute("cupPrice", cafeNero.priceTable.cupPrice);
+	pageContext.setAttribute("coffeePrice", cafeNero.priceTable.coffeePrice);
+	pageContext.setAttribute("sugarPrice", cafeNero.priceTable.sugarPrice);
+	pageContext.setAttribute("milkPrice", cafeNero.priceTable.milkPrice);
+
 }
 %>
 
@@ -48,8 +68,8 @@ if(session.getAttribute("Shop") == null) {
     <td width="18%" height="26">Coffee </td>
     <td width="26%"><input type="range" name="coffee" min="0" max="10"></td>
     <td width="10%">Cups</td>
-    <td width="15%">&nbsp;</td>
-    <td width="9%">&nbsp;</td>
+    <td width="15%"><jsp:text>${cupsInventory}</jsp:text></td>
+    <td width="9%"><jsp:text>${cupPrice}</jsp:text></td>
     <td width="9%"><input type="text" name="cupOrder"></td>
     <td width="13%"><button type="submit" form="priceform" value="buyCup">Buy</button></td>
   </tr>
@@ -57,8 +77,8 @@ if(session.getAttribute("Shop") == null) {
     <td>Milk</td>
     <td><input type="range" name="milk" min="0" max="10"></td>
     <td>Coffee</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><jsp:text>${coffeeInventory}</jsp:text></td>
+    <td><jsp:text>${coffeePrice}</jsp:text></td>
     <td><input type="text" name="coffeeOrder"></td>
     <td><button type="submit" form="priceform" value="buyCoffee">Buy</button></td>
   </tr>
@@ -66,8 +86,8 @@ if(session.getAttribute("Shop") == null) {
     <td>Sugar</td>
     <td><input type="range" name="sugar" min="0" max="10"></td>
     <td>Milk</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><jsp:text>${milkInventory}</jsp:text></td>
+    <td><jsp:text>${milkPrice}</jsp:text></td>
     <td><input type="text" name="milkOrder"></td>
     <td><button type="submit" form="priceform" value="buyMilk">Buy</button></td>
   </tr>
@@ -75,8 +95,8 @@ if(session.getAttribute("Shop") == null) {
     <td>Price per Cup</td>
     <td><input type="text" name="price"></td>
     <td>Sugar</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><jsp:text>${sugarInventory}</jsp:text></td>
+    <td><jsp:text>${sugarPrice}</jsp:text></td>
     <td><input type="text" name="sugarOrder"></td>
     <td><button type="submit" form="priceform" value="buySugar">Buy</button></td>
   </tr>
