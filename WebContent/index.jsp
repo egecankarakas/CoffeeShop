@@ -8,6 +8,12 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+<p> Welcome to Coffee Shop Simulation. </p>
+
+This is your Coffee Shop.
+You can determine the price per cup of coffee.
+
 <%
 Shop cafeNero;
 if(session.getAttribute("Shop") == null) {
@@ -18,17 +24,19 @@ if(session.getAttribute("Shop") == null) {
 	int day = cafeNero.day;
 	cafeNero.prices[day]= Double.parseDouble(request.getParameter("price"));
 	cafeNero.balanceUpdater();
+	pageContext.setAttribute("dailySales", cafeNero.dailySales[cafeNero.day-1]);
+	pageContext.setAttribute("day", cafeNero.day);
+	pageContext.setAttribute("balance", cafeNero.balance);
 }
 %>
+	
+	
+	<p>Your current balance: <jsp:text>${balance}</jsp:text></p>
+	<p>Today is day <jsp:text>${day}</jsp:text></p>
+	<p>Today's sale: <jsp:text>${dailySales}</jsp:text> </p>
 
-<p> Welcome to Coffee Shop Simulation. </p>
 
-This is your Coffee Shop.
-You can determine the price per cup of coffee.
 
-<p>Your current balance: <% out.println(cafeNero.balance); %></p>
-<p>Today is day <% out.println(cafeNero.day); %></p>
-<p>Today's sale: <% out.println(cafeNero.dailySales[cafeNero.day]); %> </p>
 <form action="index.jsp" method="get" id="priceform">
   Price: 
   <input type="text" name="price">

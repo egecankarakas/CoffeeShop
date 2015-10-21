@@ -21,4 +21,5 @@ public class Shop {
 		dailySales[day] = 3;
 		day++;
 	}
+	
 }
