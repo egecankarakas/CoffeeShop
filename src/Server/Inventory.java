@@ -1,10 +1,19 @@
 package Server;
 
 public class Inventory {
-	private int cups;
-	private Double coffee;
-	private Double milk;
-	private Double sugar;
-	private Double Balance;
+	int cups;
+	double coffee;
+	double milk;
+	double sugar;
+	double balance;
+	
+	public Inventory(int cups, double coffee, double milk, double sugar, double balance){
+		this.cups = cups;
+		this.coffee = coffee;
+		this.milk = milk;
+		this.sugar = sugar;
+		this.balance = balance;
+	}
+	
 	
 }
