@@ -1,11 +1,11 @@
 package Server;
 
 public class Recipe {
-	double coffeePerCup;
-	double milkPerCup;
-	double sugarPerCup;
+	int coffeePerCup;
+	int milkPerCup;
+	int sugarPerCup;
 	
-	public Recipe(Double coffeePerCup, Double milkPerCup, Double sugarPerCup){
+	public Recipe(int coffeePerCup, int milkPerCup, int sugarPerCup){
 		this.coffeePerCup = coffeePerCup;
 		this.milkPerCup = milkPerCup;
 		this.sugarPerCup = sugarPerCup;

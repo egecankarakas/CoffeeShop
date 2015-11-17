@@ -38,6 +38,14 @@ if(session.getAttribute("Shop") == null) {
 	cafeNero.balance -= cafeNero.priceTable.sugarPrice * Double.parseDouble(request.getParameter("sugarOrder"));
 	cafeNero.balance -= cafeNero.priceTable.milkPrice * Double.parseDouble(request.getParameter("milkOrder"));
 	
+	int coffee = Integer.parseInt(request.getParameter("coffee"));
+	int milk = Integer.parseInt(request.getParameter("milk"));
+	int sugar = Integer.parseInt(request.getParameter("sugar"));
+	
+	Recipe recipe = new Recipe(coffee,milk,sugar);
+	
+	cafeNero.recipes[day] = recipe;
+	
 	cafeNero.balanceUpdater();
 	pageContext.setAttribute("dailySales", cafeNero.dailySales[cafeNero.day-1]);
 	pageContext.setAttribute("day", cafeNero.day);
@@ -67,15 +75,15 @@ if(session.getAttribute("Shop") == null) {
   </tr>
   <tr>
     <td><strong>Ingredient</strong></td>
-    <td><strong>Amount</strong></td>
-    <td><strong>Item</strong></td>
-    <td><strong>Amount</strong></td>
-    <td><strong>Price per Unit</strong></td>
+    <td><strong>Usage Amount per Cup</strong></td>
+    <td><strong>-</strong></td>
+    <td><strong>Available Stocks</strong></td>
+    <td><strong>Unit Price</strong></td>
     <td><strong>Order Amount</strong></td>
     </tr>
   <tr>
     <td width="18%" height="26">Coffee </td>
-    <td width="26%"><input type="range" name="coffee" min="0" max="10"></td>
+    <td width="26%"><input type="text" name="coffee" value="0"></td>
     <td width="10%">Cups</td>
     <td width="15%"><jsp:text>${cupsInventory}</jsp:text></td>
     <td width="9%"><jsp:text>${cupPrice}</jsp:text></td>
@@ -83,7 +91,7 @@ if(session.getAttribute("Shop") == null) {
     </tr>
   <tr>
     <td>Milk</td>
-    <td><input type="range" name="milk" min="0" max="10"></td>
+    <td><input type="text" name="milk" value="0"></td>
     <td>Coffee</td>
     <td><jsp:text>${coffeeInventory}</jsp:text></td>
     <td><jsp:text>${coffeePrice}</jsp:text></td>
@@ -91,15 +99,15 @@ if(session.getAttribute("Shop") == null) {
     </tr>
   <tr>
     <td>Sugar</td>
-    <td><input type="range" name="sugar" min="0" max="10"></td>
+    <td><input type="text" name="sugar" value="0"></td>
     <td>Milk</td>
     <td><jsp:text>${milkInventory}</jsp:text></td>
     <td><jsp:text>${milkPrice}</jsp:text></td>
     <td><input type="text" name="milkOrder" value="0"></td>
     </tr>
   <tr>
-    <td>Price per Cup</td>
-    <td><input type="text" name="price"></td>
+    <td>Sales Price of Coffee</td>
+    <td><input type="text" name="price" value="0"></td>
     <td>Sugar</td>
     <td><jsp:text>${sugarInventory}</jsp:text></td>
     <td><jsp:text>${sugarPrice}</jsp:text></td>
