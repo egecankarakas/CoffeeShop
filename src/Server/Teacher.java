@@ -11,7 +11,7 @@ public class Teacher {
       okButton.addActionListener(listener);
       
       JLabel title = new JLabel();
-      title.setText("Coffee Shop Simulation Management Consolex");
+      title.setText("Coffee Shop Simulation Management Console");
       
       JList userList = new JList();
       
