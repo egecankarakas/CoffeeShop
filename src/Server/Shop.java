@@ -1,6 +1,10 @@
 package Server;
 
-public class Shop {
+import java.io.Serializable;
+
+public class Shop implements Serializable{
+	
+	private static final long serialVersionUID = 7526472295622776147L;
 	
 	public Double balance;
 	public Double [] prices;
