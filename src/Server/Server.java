@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
